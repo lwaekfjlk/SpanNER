@@ -470,7 +470,6 @@ class BertNerTagger(pl.LightningModule):
         #                         max_length=self.args.bert_max_length,
         #                         pad_to_maxlen=False
         #                         )
-
         vocab_path = os.path.join(self.bert_dir, "vocab.txt")
         print("use BertWordPieceTokenizer as the tokenizer ")
         dataset = BERTNERDataset(self.args, json_path=json_path,
@@ -570,11 +569,11 @@ def main():
 
     # save the best model
     checkpoint_callback = ModelCheckpoint(
-        filepath=args.default_root_dir,
+        dirpath=args.default_root_dir,
         save_top_k=1,
         verbose=True,
         monitor="span_f1",
-        period=-1,
+        #period=-1,
         mode="max",
     )
     trainer = Trainer.from_argparse_args(
