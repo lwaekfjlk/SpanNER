@@ -1,7 +1,9 @@
-torch==1.6
+torch==1.6.0
 pytorch-lightning>=0.9.0
 tokenizers
 transformers
 numpy
 scipy
 scikit-learn
+allennlp
+overrides==3.1.0

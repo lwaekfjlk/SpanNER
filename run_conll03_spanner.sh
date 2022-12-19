@@ -1,8 +1,8 @@
 export PYTHONPATH="$PWD"
 
-DATA_DIR="data/conll03"
+DATA_DIR="/projects/ogma3/haofeiy/SpanNER/data/conll03"
 PRETRAINED="bert-large-uncased"
-BERT_DIR="/home/jlfu/Projects/"${PRETRAINED}
+BERT_DIR="/projects/ogma3/haofeiy/SpanNER/"${PRETRAINED}
 
 
 
@@ -36,10 +36,10 @@ modelName="spanner_"${PRETRAINED}_spMLen${max_span_len}_usePrune${use_prune}_use
 idtest=${dataname}_${modelName}
 param_name=epoch${max_epochs}_batchsize${batchSize}_lr${LR}_maxlen${MAXLEN}
 
-OUTPUT_DIR="/home/jlfu/spanner/train_logs/$dataname/${modelName}"
+OUTPUT_DIR="/projects/ogma3/haofeiy/SpanNER/train_logs/$dataname/${modelName}"
 #mkdir -p $OUTPUT_DIR
 
-nohup python trainer.py \
+python trainer.py \
 --dataname $dataname \
 --data_dir $DATA_DIR \
 --bert_config_dir $BERT_DIR \
@@ -69,7 +69,6 @@ nohup python trainer.py \
 --neg_span_weight $neg_span_weight \
 --param_name $param_name \
 --gradient_clip_val $MAXNORM \
---optimizer "adamw" >train_logs/${idtest}_epoch${max_epochs}_0606.txt &
-
+--optimizer "adamw" >train_logs/${idtest}_epoch${max_epochs}_0606.txt
 
 
